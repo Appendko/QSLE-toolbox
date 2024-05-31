@@ -1,0 +1,154 @@
+### Title
+# molecule_system: the_name_of_this_system
+#     Just a name. 
+molecule_system: 1d_example
+
+### Data Source
+# Huxp_source: "current_yml" or filename
+#    Specify the source of necessary operators:
+#    Hamiltonian (H), dipole moment operator (mu), position operators (x) and momentum operator (p)
+#    H needs to be a N-by-N matrix; 
+#    x and p should be (M, N, N) matrices, in which M is the number of vibrational modes.
+#    mu needs to be a (A, N, N) matrix, in which A is an integer between 1-3 (dimension of dipole moment);
+#    In principle A should be 3, but for some cases the dipole moment only occur on certain axes.
+#    All of these matrices are written in atomic unit; 
+#    x and p are written in mass-weighted coordinate.
+#
+#    Currently this program support 2 format:
+#    (1) "current_yml": specify H, mu, x and p in this file directly.
+#                       For complex numbers, please use i or j for imaginary part.
+#
+#    (2) a filename containing path
+#        This should be a Python Pickle file Containing a Python Dictionary.
+#        (In principle, an Npz file from numpy is also valid.)
+#        It should contain the following keyword: "H", "mu", "x", "p",
+#        which corresponds to the 4 operators needed.
+       
+Huxp_source: current_yml
+
+H:    [[0.0109352 , 0.        , 0.        , 0.        , 0.        , 0.        , 0.        ],
+       [0.        , 0.01822534, 0.        , 0.        , 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.02551548, 0.00022782, 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.00022782, 0.02551548, 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.        , 0.03280561, 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.        , 0.        , 0.04009575, 0.00032218],
+       [0.        , 0.        , 0.        , 0.        , 0.        , 0.00032218, 0.04009575]]
+
+mu:   [[[ 0.        ,  0.14187331,  0.        , -0.23586815,  0.        ,  0.        ,  0.        ],
+        [ 0.14187331,  0.        ,  0.20063916,  0.        , -0.23586815,  0.        ,  0.        ],
+        [ 0.        ,  0.20063916,  0.        ,  0.        ,  0.        , -0.23586815,  0.        ],
+        [-0.23586815,  0.        ,  0.        ,  0.        ,  0.14187331,  0.        , -0.33356794],
+        [ 0.        , -0.23586815,  0.        ,  0.14187331,  0.        ,  0.20063916,  0.        ],
+        [ 0.        ,  0.        , -0.23586815,  0.        ,  0.20063916,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        , -0.33356794,  0.        ,  0.        ,  0.        ]]]
+
+x:    [[[ 0.        ,  8.28165577,  0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
+        [ 8.28165577,  0.        , 11.71202991,  0.        ,  0.        ,  0.        ,  0.        ],
+        [ 0.        , 11.71202991,  0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  0.        ,  8.28165577,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  8.28165577,  0.        , 11.71202991,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  0.        , 11.71202991,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ,  0.        ,  0.        ]],
+       [[ 0.        ,  0.        ,  0.        ,  5.85601495,  0.        ,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  0.        ,  5.85601495,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ,  5.85601495,  0.        ],
+        [ 5.85601495,  0.        ,  0.        ,  0.        ,  0.        ,  0.        ,  8.28165577],
+        [ 0.        ,  5.85601495,  0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  5.85601495,  0.        ,  0.        ,  0.        ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  8.28165577,  0.        ,  0.        ,  0.        ]]]
+
+p:    [[[ 0.+0.j       , -0.-0.0603744j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.0603744j,  0.+0.j       , -0.-0.0853823j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.0853823j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       , -0.-0.0603744j,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.0603744j,  0.+0.j       , -0.-0.0853823j,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.0853823j,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ]],
+       [[ 0.+0.j       ,  0.+0.j       ,  0.+0.j       , -0.-0.0853823j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       , -0.-0.0853823j,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       , -0.-0.0853823j,  0.+0.j       ],
+        [ 0.+0.0853823j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       , -0.-0.1207488j],
+        [ 0.+0.j       ,  0.+0.0853823j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.0853823j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ],
+        [ 0.+0.j       ,  0.+0.j       ,  0.+0.j       ,  0.+0.1207488j,  0.+0.j       ,  0.+0.j       ,  0.+0.j       ]]]
+
+### Initial Wavefunction
+# Psi_0: (wavefunction, integer for specific basis, or a full vector)
+# Default Value: None
+#     This should only uncommented for population calculation unless you really know the meaning.
+# Psi_0: 3
+
+# bool_orig2eigen: (bool)
+# Default Value: False for spectrum, True for pop.
+#    This should only uncommented if you really know the meaning.
+#    Since the spectrum should start with ground state in eigenbasis,
+#    currently this only works on population calculations.
+# bool_orig2eigen: True
+
+### Friction
+# friction_coefficient: fs-1
+# Default Value: 0.005
+#    "friction_coefficient" is the magnitude of the friction coefficient.
+#    Here, we use the same magnitude for each vibrational mode.
+#    Furthermore, a larger friction coefficient causes the system to relax more quickly.
+friction_coefficient: 0.005
+
+### Pulses
+# pulses: [pulse_frequency, pulse_width, pulse_intensity]
+# Default Value: [[3000, 5, 0.005],]
+# "pulse_frequency": cm-1
+#    "pulse_frequency" is the central frequency of the laser pulse.
+# "pulse_width": fs
+#    "pulse_width" refers to the pulse width (FWHM) of Gaussian laser pulses in the time domain. 
+#     The default value of 5 fs corresponds to approximately FWHM of 3000 cm⁻¹ in the frequency domain.
+# "pulse_intensity": atomic unit. 
+#    "pulse_intensity" denotes the intensity of the laser pulses used to generate non-linear signals. 
+pulses: [[3000, 5, 0.005], ]
+
+### Propagation
+# propagating_timestep: fs
+# Default Value: 0.25
+#    "propagating_timestep" indicates that we propagate the wavefunction by applying the Runge-Kutta 4 method 
+#    to the Schrödinger-Langevin equation at every this time interval."
+propagating_timestep: 0.25
+
+### Detection
+# detect_time_duration: fs
+# Default Value: 8001
+#    "detect_time_duration" refers to the length of the detection time, denoted by t, in the 2DIR experiment. 
+#    This value can adjust the resolution of the spectrum.
+detect_time_duration: 8001
+
+# detect_timestep: fs
+# Default Value: 4
+#    Only works for spectrum, not population calculation.
+#    "detect_timestep" means that we obtain spectral signals every this time interval. 
+#    This value can adjust the highest resolvable frequency, which is related to the Nyquist frequency. 
+#    The default value of 4 fs can cover frequencies up to 4100 cm⁻¹, almost spanning the mid-infrared region.
+detect_timestep: 4
+
+# "population_timestep": fs
+# Default Value: 1
+#    Only works for population, not spectrum calculation.
+#    "population_timestep" means that we record population every this time interval.  
+#    Set this value to 0 to turn off recording population.
+population_timestep: 1
+
+### Plot
+# spec_range: [min, max]
+# Default Value: [3000,3500]
+spec_range: [3000,3500]
+
+### Execution
+# For calculating 1D Spectra:
+# python QSLE_1D_demo.py qsle_1D_model.yml
+#
+# For calculating Population Dynamics:
+# python QSLE_pop_demo.py qsle_1D_model.yml
+#
+# For printing contents in output .npz Files: (for Population and Molecular Polarization, P)
+# python print_npz.py qsle_pop.npz 
+#
+# For plotting only with existing Molecular Polarization results (qsle_1D_P.npz):
+# python QSLE_1D_plot.py qsle_1D_model.yml qsle_1D_P.npz
+#
